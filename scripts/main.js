@@ -1,5 +1,5 @@
 import { PaintOptionsMenu } from "./paintOptions.js";
-import { InteriorOptionsMenu } from "./interierOptions.js";
+import { InteriorOptionsMenu } from "./interiorOptions.js";
 import { TechOptionsMenu } from "./technologyOptions.js";
 import { WheelOptionsMenu } from "./wheelOptions.js";
 
@@ -8,8 +8,8 @@ const render = async () => {
   const showInteriorTypeHTML = await InteriorOptionsMenu();
   const showTechTypeHTML = await TechOptionsMenu();
   const showWheelTypeHTML = await WheelOptionsMenu();
-  const buttonHTML = orderButtonBuilder();
-  const showOrderHTML = await showOrders();
+  //   const buttonHTML = orderButtonBuilder(); ${buttonHTML}
+  //   const showOrderHTML = await showOrders(); ${showOrderHTML}
 
   const composedHTML = `
  <h1>
@@ -48,12 +48,12 @@ const render = async () => {
 </article>
 
 <div class="order">
-    ${buttonHTML}
+   
 </div>
 
 <h2>Custom Auto Orders</h2>
 <article class="customOrders">
-${showOrderHTML}
+
 </article>
 
 `;
@@ -61,4 +61,4 @@ ${showOrderHTML}
   container.innerHTML = composedHTML;
 };
 
-// render();
+render();

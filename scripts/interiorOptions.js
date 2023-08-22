@@ -1,0 +1,17 @@
+import { setInteriorId } from "./transientState.js";
+
+export const InteriorOptionsMenu = async () => {
+  const response = await fetch("http://localhost:8088/interiors");
+  const interiors = await response.json();
+
+  let html = `<select id="interior">`;
+  html += `<option value="0">Select an interior option</option>`;
+
+  const arrayOfInteriors = interiors.map((interior) => {
+    return `<option value="${interior.id}">${interior.material}</option>`;
+  });
+
+  html += arrayOfInteriors.join("");
+  html += `</select>`;
+  return html;
+};
