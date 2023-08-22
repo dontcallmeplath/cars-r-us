@@ -1,6 +1,8 @@
 import { setWheelId } from "./transientState.js";
 
 export const WheelOptionsMenu = async () => {
+  document.addEventListener("change", handleWheelChoice);
+
   const response = await fetch("http://localhost:8088/wheels");
   const wheels = await response.json();
 
@@ -14,4 +16,10 @@ export const WheelOptionsMenu = async () => {
   html += arrayOfWheels.join("");
   html += `</select>`;
   return html;
+};
+
+const handleWheelChoice = (event) => {
+  if (event.target.id === "wheel") {
+    setWheelId(parseInt(event.target.value));
+  }
 };
