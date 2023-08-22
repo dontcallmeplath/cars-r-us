@@ -1,5 +1,5 @@
 // sets up the transient state data structure and provide initial values
-const transientState = {
+let transientState = {
   paintId: 0,
   interiorId: 0,
   technologyId: 0,
@@ -38,4 +38,10 @@ export const orderPlaced = async () => {
   // listen for change re submission
   const customChangeEvent = new CustomEvent("stateChanged");
   document.dispatchEvent(customChangeEvent);
+  transientState = {
+    paintId: 0,
+    interiorId: 0,
+    technologyId: 0,
+    wheelId: 0,
+  };
 };
