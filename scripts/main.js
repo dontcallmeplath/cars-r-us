@@ -2,14 +2,16 @@ import { PaintOptionsMenu } from "./paintOptions.js";
 import { InteriorOptionsMenu } from "./interiorOptions.js";
 import { TechOptionsMenu } from "./technologyOptions.js";
 import { WheelOptionsMenu } from "./wheelOptions.js";
+import { orderButtonBuilder } from "./orderButton.js";
+import { showOrders } from "./orders.js";
 
 const render = async () => {
   const showPaintTypeHTML = await PaintOptionsMenu();
   const showInteriorTypeHTML = await InteriorOptionsMenu();
   const showTechTypeHTML = await TechOptionsMenu();
   const showWheelTypeHTML = await WheelOptionsMenu();
-  //   const buttonHTML = orderButtonBuilder(); ${buttonHTML}
-  //   const showOrderHTML = await showOrders(); ${showOrderHTML}
+  const buttonHTML = orderButtonBuilder();
+  const showOrderHTML = await showOrders();
 
   const composedHTML = `
  <h1>
@@ -48,12 +50,12 @@ const render = async () => {
 </article>
 
 <div class="order">
-   
+    ${buttonHTML}
 </div>
 
 <h2>Custom Auto Orders</h2>
 <article class="customOrders">
-
+${showOrderHTML}
 </article>
 
 `;
@@ -62,3 +64,7 @@ const render = async () => {
 };
 
 render();
+document.addEventListener("stateChanged", (event) => {
+  console.log("State of data has changed. Regenerating HTML...");
+  render();
+});
