@@ -6,8 +6,8 @@ export const PaintOptionsMenu = async () => {
   const response = await fetch("http://localhost:8088/paints");
   const paints = await response.json();
 
-  let html = `<select id="paint">`;
-  html += `<option value="0">Select a paint color</option>`;
+  let html = `<select id="paint" required>`;
+  html += `<option value="">Select a paint color</option>`;
 
   const arrayOfPaints = paints.map((paint) => {
     return `<option value="${paint.id}">${paint.color}</option>`;

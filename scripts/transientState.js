@@ -21,7 +21,7 @@ export const setWheelId = (chosenWheel) => {
 };
 
 export const orderPlaced = async () => {
-  postOptions = {
+  const postOptions = {
     method: "POST",
     headers: {
       "Content-type": "application/json",
@@ -30,7 +30,14 @@ export const orderPlaced = async () => {
   };
 
   // Send the transient state to your API if it passes value test
-  const response = await fetch("http://localhost:8088/orders", postOptions);
+
+  const stateArray = Object.values(transientState);
+  const isNotNull = (currentValue) => currentValue > 0;
+  if (stateArray.every(isNotNull)) {
+    const response = await fetch("http://localhost:8088/orders", postOptions);
+  } else {
+    window.alert("Please review your selections");
+  }
 
   // listen for change re submission
   const customChangeEvent = new CustomEvent("stateChanged");
